@@ -13,9 +13,9 @@ int  wr_index;
 /*
  * callback function (called many times in one request)
  */
-size_t mycallback(void *buffer, size_t size, size_t nmemb, void *userp)
+size_t mycallback(void *buffer, size_t size, size_t num_of_members, void *userp)
 {
-    int segsize = size * nmemb;
+    int segsize = size * num_of_members;
 
     /* Check to see if this data exceeds the size of our buffer. If so,
      * set the user-defined context value and return 0 to indicate a
