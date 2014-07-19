@@ -21,13 +21,13 @@ size_t mycallback( void *buffer, size_t size, size_t nmemb, void *userp )
      * set the user-defined context value and return 0 to indicate a
      * problem to curl.
      */
-    if ( wr_index + segsize > MAX_BUF ) {
+    if (wr_index + segsize > MAX_BUF) {
         *(int *)userp = 1;
         return 0;
     }
 
     /* Copy the data from the curl buffer into our buffer */
-    memcpy( (void *)&wr_buf[wr_index], buffer, (size_t)segsize );
+    memcpy((void *)&wr_buf[wr_index], buffer, (size_t)segsize);
 
     wr_index += segsize;     /* Update the write index */
     wr_buf[wr_index] = '\0'; /* Null terminate the buffer */
@@ -60,21 +60,21 @@ int main(int argc, char *argv[])
     }
 
     /* Tell curl the URL of the file we're going to retrieve */
-    curl_easy_setopt( curl, CURLOPT_URL, url);
+    curl_easy_setopt(curl, CURLOPT_URL, url);
 
     /* Tell curl that we'll receive data to the function mycallback, and
      * also provide it with a context pointer for our error return.
      */
-    curl_easy_setopt( curl, CURLOPT_WRITEDATA, (void *)&wr_error );
-    curl_easy_setopt( curl, CURLOPT_WRITEFUNCTION, mycallback );
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&wr_error);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, mycallback);
 
     /* Allow curl to perform the action */
-    ret = curl_easy_perform( curl );
-    printf( "ret = %d (write_error = %d)\n", ret, wr_error );
+    ret = curl_easy_perform(curl);
+    printf("ret = %d (write_error = %d)\n", ret, wr_error);
 
     /* Emit the page if curl indicates that no errors occurred */
-    if ( ret == 0 ) printf( "%s\n", wr_buf );
+    if (ret == 0) printf("%s\n", wr_buf);
 
-    curl_easy_cleanup( curl );
+    curl_easy_cleanup(curl);
     return 0;
 }
