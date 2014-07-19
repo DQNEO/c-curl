@@ -34,7 +34,7 @@ size_t mycallback( void *buffer, size_t size, size_t nmemb, void *userp )
     wr_index += segsize;
 
     /* Null terminate the buffer */
-    wr_buf[wr_index] = 0;
+    wr_buf[wr_index] = '\0';
 
     /* Return the number of bytes received, indicating to curl that all is okay */
     return segsize;
