@@ -13,7 +13,7 @@ int  wr_index;
 /*
  * callback function (called many times in one request)
  */
-size_t mycallback( void *buffer, size_t size, size_t nmemb, void *userp )
+size_t mycallback(void *buffer, size_t size, size_t nmemb, void *userp)
 {
     int segsize = size * nmemb;
 
