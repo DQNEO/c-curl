@@ -11,8 +11,7 @@ char wr_buf[MAX_BUF+1];
 int  wr_index;
 
 /*
- * Write data callback function (called within the context of
- * curl_easy_perform.
+ * callback function (called within the context of curl_easy_perform.
  */
 size_t mycallback( void *buffer, size_t size, size_t nmemb, void *userp )
 {
