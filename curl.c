@@ -11,7 +11,7 @@ int  wr_index;
  * Write data callback function (called within the context of
  * curl_easy_perform.
  */
-size_t write_data( void *buffer, size_t size, size_t nmemb, void *userp )
+size_t mycallback( void *buffer, size_t size, size_t nmemb, void *userp )
 {
     int segsize = size * nmemb;
 
@@ -61,11 +61,11 @@ int main( void )
     /* Tell curl the URL of the file we're going to retrieve */
     curl_easy_setopt( curl, CURLOPT_URL, "http://www.ibm.com/developerworks/jp/opensource/library/os-curl/#N100C4" );
 
-    /* Tell curl that we'll receive data to the function write_data, and
+    /* Tell curl that we'll receive data to the function mycallback, and
      * also provide it with a context pointer for our error return.
      */
     curl_easy_setopt( curl, CURLOPT_WRITEDATA, (void *)&wr_error );
-    curl_easy_setopt( curl, CURLOPT_WRITEFUNCTION, write_data );
+    curl_easy_setopt( curl, CURLOPT_WRITEFUNCTION, mycallback );
 
     /* Allow curl to perform the action */
     ret = curl_easy_perform( curl );
