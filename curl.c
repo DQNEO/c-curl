@@ -26,18 +26,13 @@ size_t mycallback( void *buffer, size_t size, size_t nmemb, void *userp )
         return 0;
     }
 
-
     /* Copy the data from the curl buffer into our buffer */
     memcpy( (void *)&wr_buf[wr_index], buffer, (size_t)segsize );
 
-    /* Update the write index */
-    wr_index += segsize;
+    wr_index += segsize;     /* Update the write index */
+    wr_buf[wr_index] = '\0'; /* Null terminate the buffer */
 
-    /* Null terminate the buffer */
-    wr_buf[wr_index] = '\0';
-
-    /* Return the number of bytes received, indicating to curl that all is okay */
-    return segsize;
+    return segsize;     /* Return the number of bytes received, indicating to curl that all is okay */
 }
 
 int main(int argc, char *argv[])
