@@ -11,7 +11,7 @@ char wr_buf[MAX_BUF+1];
 int  wr_index;
 
 /*
- * callback function (called within the context of curl_easy_perform.
+ * callback function (called many times in one request)
  */
 size_t mycallback( void *buffer, size_t size, size_t nmemb, void *userp )
 {
@@ -31,6 +31,8 @@ size_t mycallback( void *buffer, size_t size, size_t nmemb, void *userp )
 
     wr_index += segsize;     /* Update the write index */
     wr_buf[wr_index] = '\0'; /* Null terminate the buffer */
+
+    fprintf(stderr, "wr_index = %d\n", wr_index);
 
     return segsize;     /* Return the number of bytes received, indicating to curl that all is okay */
 }
