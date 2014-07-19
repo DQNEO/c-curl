@@ -1,3 +1,6 @@
+/*
+ * Simple curl application to do HTTP GET
+ */
 #include <stdio.h>
 #include <string.h>
 #include <curl/curl.h>
@@ -38,9 +41,6 @@ size_t mycallback( void *buffer, size_t size, size_t nmemb, void *userp )
     return segsize;
 }
 
-/*
- * Simple curl application to read the index.html file from a Web site.
- */
 int main(int argc, char *argv[])
 {
     char *url;
