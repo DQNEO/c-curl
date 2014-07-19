@@ -70,10 +70,13 @@ int main(int argc, char *argv[])
 
     /* Allow curl to perform the action */
     ret = curl_easy_perform(curl);
-    printf("ret = %d (write_error = %d)\n", ret, wr_error);
 
-    /* Emit the page if curl indicates that no errors occurred */
-    if (ret == 0) printf("%s\n", wr_buf);
+    if (ret == 0) {
+        /* Emit the page if curl indicates that no errors occurred */
+        printf("%s\n", wr_buf);
+    } else {
+        printf("ret = %d (write_error = %d)\n", ret, wr_error);
+    }
 
     curl_easy_cleanup(curl);
     return 0;
