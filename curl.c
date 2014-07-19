@@ -41,12 +41,19 @@ size_t mycallback( void *buffer, size_t size, size_t nmemb, void *userp )
 /*
  * Simple curl application to read the index.html file from a Web site.
  */
-int main( void )
+int main(int argc, char *argv[])
 {
-
+    char *url;
     CURL *curl;
     CURLcode ret;
     int  wr_error;
+
+    if (argc < 2) {
+        fprintf(stderr, "argument not given\n");
+        return 1;
+    }
+
+    url = argv[1];
 
     wr_error = 0;
     wr_index = 0;
@@ -59,7 +66,7 @@ int main( void )
     }
 
     /* Tell curl the URL of the file we're going to retrieve */
-    curl_easy_setopt( curl, CURLOPT_URL, "http://www.ibm.com/developerworks/jp/opensource/library/os-curl/#N100C4" );
+    curl_easy_setopt( curl, CURLOPT_URL, url);
 
     /* Tell curl that we'll receive data to the function mycallback, and
      * also provide it with a context pointer for our error return.
