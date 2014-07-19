@@ -1,5 +1,6 @@
 /*
  * Simple curl application to do HTTP GET
+ * forked from http://www.ibm.com/developerworks/jp/opensource/library/os-curl/#N100C4
  */
 #include <stdio.h>
 #include <string.h>
